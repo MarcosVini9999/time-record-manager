@@ -1,6 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { PontoGoButton } from "../../components";
 import Logo from "@/assets/icons/pontoGoLogo.svg";
+import { Colors } from "@/config";
 
 export const Header = () => {
   return (
@@ -17,9 +18,9 @@ export const Header = () => {
     >
       <img src={Logo} alt="PontoGo Logo" />
       <Box component="nav">
-        <PontoGoButton>Início</PontoGoButton>
-        <PontoGoButton>Planos</PontoGoButton>
-        <PontoGoButton>Fazer login</PontoGoButton>
+        <Link color={Colors.white}>Início</Link>
+        <Link color={Colors.white}>Planos</Link>
+        <PontoGoButton buttonStyle="secondary">Fazer login</PontoGoButton>
       </Box>
     </Box>
   );

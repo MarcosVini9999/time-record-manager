@@ -1,24 +1,34 @@
 import { createTheme } from "@mui/material";
 
+export const Colors = {
+  black: "#000000",
+  white: "#FFFFFF",
+  primary: "#330693",
+  secondary: "#8A53FF",
+};
+
 export const Theme = createTheme({
   palette: {
     common: {
-      black: "#000000",
-      white: "#FFFFFF",
+      black: Colors.black,
+      white: Colors.white,
     },
     text: {
-      primary: "#330693",
-      secondary: "#FFFFFF",
+      primary: Colors.primary,
+      secondary: Colors.white,
     },
     primary: {
-      main: "#330693",
+      main: Colors.primary,
     },
     secondary: {
-      main: "#8A53FF",
+      main: Colors.secondary,
     },
     background: {
-      paper: "#8A53FF",
-      default: "#fff",
+      paper: Colors.primary,
+      default: Colors.white,
     },
+  },
+  typography: {
+    fontFamily: ["Poppins"].join(","),
   },
 });

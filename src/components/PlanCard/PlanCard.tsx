@@ -32,7 +32,9 @@ export const PlanCard: FC<PlanCardProps> = ({
       {permissions.map((element) => (
         <p>{element.benefit}</p>
       ))}
-      <PontoGoButton onClick={onClick}>Assinar agora</PontoGoButton>
+      <PontoGoButton onClick={onClick} buttonStyle="primary">
+        Assinar agora
+      </PontoGoButton>
     </Box>
   );
 };

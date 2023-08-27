@@ -1,7 +1,8 @@
 export const ladingPageData = {
   upSection: {
     upTitle: "Esquece o ponto manual",
-    title: "Chegou a nova realidade para Controle de Pontos",
+    title: "Chegou a nova realidade para",
+    titleSpan: "Controle de Pontos",
     description:
       "Com o PontoGo seus colaboradores poderão bater seus pontos de forma fácil e rápida, possuindo também uma Dashboard intuitiva.",
   },
