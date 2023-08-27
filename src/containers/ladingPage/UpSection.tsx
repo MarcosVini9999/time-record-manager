@@ -8,10 +8,7 @@ const styles = {
     maxWidth: "1261.75px",
     marginInline: "auto",
     marginTop: "55.85px",
-  },
-  banner: {
-    maxWidth: "703.75px",
-    maxHeight: "507px",
+    marginBottom: "43px",
   },
   upTtile: {
     marginBottom: "11px",
@@ -33,6 +30,7 @@ export const UpSection = () => {
       flexDirection="row"
       justifyContent="center"
       alignContent="center"
+      flexWrap="wrap"
       gap="38px"
       style={styles.upSectionContainer}
     >
@@ -77,10 +75,24 @@ export const UpSection = () => {
         >
           {ladingPageData.upSection.description}
         </Typography>
-        <PontoGoButton buttonStyle="primary">Assinar agora</PontoGoButton>
-        <PontoGoButton buttonStyle="borders">Ver planos</PontoGoButton>
+        <Box display="flex" flexDirection="row" alignItems="center" gap="15px">
+          <PontoGoButton buttonStyle="primary">Assinar agora</PontoGoButton>
+          <PontoGoButton buttonStyle="borders">Ver planos</PontoGoButton>
+        </Box>
       </Box>
-      <img src={banner} alt="Homem no cyber espaço" style={styles.banner} />
+      <Box
+        sx={{
+          maxWidth: "703.75px",
+          maxHeight: "507px",
+          width: {
+            sm: "440px",
+            md: "500px",
+            lg: "703.75px",
+          },
+        }}
+      >
+        <img src={banner} alt="Homem no cyber espaço" width="inherit" />
+      </Box>
     </Box>
   );
 };

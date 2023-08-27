@@ -3,6 +3,15 @@ import { PontoGoButton } from "../../components";
 import Logo from "@/assets/icons/pontoGoLogo.svg";
 import { Colors } from "@/config";
 
+const styles = {
+  link: {
+    fontSize: "16px",
+    fontWeight: "400",
+    lineHeight: "24px",
+    letterSpacing: "0em",
+  },
+};
+
 export const Header = () => {
   return (
     <Box
@@ -13,13 +22,48 @@ export const Header = () => {
       justifyContent="space-between"
       flexWrap="wrap"
       paddingTop="48px"
-      paddingLeft="120px"
-      paddingRight="118px"
+      maxWidth="1261.75px"
+      marginLeft="auto"
+      marginRight="auto"
+      sx={{
+        width: {
+          sm: "400px",
+          md: "860px",
+          lg: "1200px",
+        },
+      }}
     >
       <img src={Logo} alt="PontoGo Logo" />
       <Box component="nav">
-        <Link color={Colors.white}>Início</Link>
-        <Link color={Colors.white}>Planos</Link>
+        <Link
+          href="#inicio"
+          color={Colors.white}
+          style={styles.link}
+          underline="hover"
+          display="none"
+          sx={{
+            display: {
+              md: "inline",
+            },
+          }}
+        >
+          Início
+        </Link>
+        <Link
+          href="#planos"
+          color={Colors.white}
+          margin="0px 40px 0px 50px"
+          style={styles.link}
+          underline="hover"
+          display="none"
+          sx={{
+            display: {
+              md: "inline",
+            },
+          }}
+        >
+          Planos
+        </Link>
         <PontoGoButton buttonStyle="secondary">Fazer login</PontoGoButton>
       </Box>
     </Box>

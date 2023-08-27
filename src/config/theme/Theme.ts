@@ -31,4 +31,13 @@ export const Theme = createTheme({
   typography: {
     fontFamily: ["Poppins"].join(","),
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 250,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
 });
