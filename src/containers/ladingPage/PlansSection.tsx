@@ -10,7 +10,7 @@ const styles = {
 
 export const PlansSection = () => {
   return (
-    <Box component="section">
+    <Box component="section" marginBottom="100px">
       <Box
         maxWidth="641px"
         marginLeft="auto"
