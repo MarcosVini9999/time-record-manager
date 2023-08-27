@@ -35,6 +35,7 @@ export const UpSection = () => {
       alignContent="center"
       flexWrap="wrap"
       gap="38px"
+      id="inicio"
       style={styles.upSectionContainer}
     >
       <Box maxWidth="520px" maxHeight="343px">
