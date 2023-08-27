@@ -1,7 +1,8 @@
 import "@/resetStyles.css";
 import background from "@/assets/images/background.png";
-import { Paper } from "@mui/material";
+import { Paper, ThemeProvider } from "@mui/material";
 import { Footer, Header, PlansSection, Sponsors, UpSection } from "@/containers";
+import { Theme } from "./config";
 
 const styles = {
   paperContainer: {
@@ -16,13 +17,15 @@ const styles = {
 
 const App = () => {
   return (
-    <Paper component="main" style={styles.paperContainer}>
-      <Header />
-      <UpSection />
-      <Sponsors />
-      <PlansSection />
-      <Footer />
-    </Paper>
+    <ThemeProvider theme={Theme}>
+      <Paper component="main" style={styles.paperContainer}>
+        <Header />
+        <UpSection />
+        <Sponsors />
+        <PlansSection />
+        <Footer />
+      </Paper>
+    </ThemeProvider>
   );
 };
 
