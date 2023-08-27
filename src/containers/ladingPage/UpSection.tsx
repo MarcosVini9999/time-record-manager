@@ -19,6 +19,9 @@ const styles = {
   description: {
     marginBottom: "30px",
   },
+  banner: {
+    width: "inherit",
+  },
 };
 
 export const UpSection = () => {
@@ -91,7 +94,7 @@ export const UpSection = () => {
           },
         }}
       >
-        <img src={banner} alt="Homem no cyber espaço" width="inherit" />
+        <img src={banner} alt="Homem no cyber espaço" style={styles.banner} />
       </Box>
     </Box>
   );
