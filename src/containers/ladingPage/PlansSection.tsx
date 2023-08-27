@@ -1,33 +1,45 @@
-import { PlanCard } from "@/components";
+import { Carousel } from "@/components";
 import { ladingPageData } from "@/data/ladingPage";
+import { Box, Typography } from "@mui/material";
+
+const styles = {
+  description: {
+    opacity: 0.7,
+  },
+};
 
 export const PlansSection = () => {
   return (
-    <>
-      <PlanCard
-        planTitle={ladingPageData.card.bronze.title}
-        information={ladingPageData.card.bronze.information}
-        permissions={ladingPageData.card.bronze.hasAccess}
-        value={ladingPageData.card.bronze.value}
-      />
-      <PlanCard
-        planTitle={ladingPageData.card.silver.title}
-        information={ladingPageData.card.silver.information}
-        permissions={ladingPageData.card.silver.hasAccess}
-        value={ladingPageData.card.silver.value}
-      />
-      <PlanCard
-        planTitle={ladingPageData.card.gold.title}
-        information={ladingPageData.card.gold.information}
-        permissions={ladingPageData.card.gold.hasAccess}
-        value={ladingPageData.card.gold.value}
-      />
-      <PlanCard
-        planTitle={ladingPageData.card.platinum.title}
-        information={ladingPageData.card.platinum.information}
-        permissions={ladingPageData.card.platinum.hasAccess}
-        value={ladingPageData.card.platinum.value}
-      />
-    </>
+    <Box component="section">
+      <Box
+        maxWidth="641px"
+        marginLeft="auto"
+        marginRight="auto"
+        textAlign="center"
+        marginBottom="70px"
+      >
+        <Typography
+          variant="h4"
+          fontWeight="800"
+          fontSize="40px"
+          lineHeight="60px"
+          color="white"
+          marginBottom="10px"
+        >
+          {ladingPageData.middleSection.title}
+        </Typography>
+        <Typography
+          variant="body1"
+          fontWeight="400"
+          fontSize="20px"
+          lineHeight="30px"
+          color="white"
+          style={styles.description}
+        >
+          {ladingPageData.middleSection.description}
+        </Typography>
+      </Box>
+      <Carousel data={ladingPageData.plans} />
+    </Box>
   );
 };

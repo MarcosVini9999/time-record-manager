@@ -11,8 +11,8 @@ export const ladingPageData = {
     description:
       "Escolha o plano que melhor se encaixa na sua empresa e  faça sua assinatura, dentro de 72h iremos liberar seus acessos.",
   },
-  card: {
-    bronze: {
+  plans: [
+    {
       title: "Plano Bronze",
       value: 30,
       information: "Uso de 5 colaboradores",
@@ -24,7 +24,7 @@ export const ladingPageData = {
         { isLocked: 1, benefit: "Email corporativo" },
       ],
     },
-    silver: {
+    {
       title: "Plano Prata",
       value: 50,
       information: "Uso de 10 colaboradores",
@@ -36,7 +36,7 @@ export const ladingPageData = {
         { isLocked: 1, benefit: "Email corporativo" },
       ],
     },
-    gold: {
+    {
       title: "Plano Ouro",
       value: 100,
       information: "Uso de 20 colaboradores",
@@ -48,7 +48,7 @@ export const ladingPageData = {
         { isLocked: 1, benefit: "Email corporativo" },
       ],
     },
-    platinum: {
+    {
       title: "Plano Platina",
       value: 200,
       information: "Acessos ilimitados",
@@ -60,5 +60,5 @@ export const ladingPageData = {
         { isLocked: 0, benefit: "Email corporativo" },
       ],
     },
-  },
+  ],
 };

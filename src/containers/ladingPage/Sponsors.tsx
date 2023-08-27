@@ -14,6 +14,7 @@ export const Sponsors = () => {
       flexWrap="wrap"
       justifyContent="center"
       gap="70px"
+      marginBottom="90px"
     >
       <img src={sponsorBrainny} alt="Brainny Logo" />
       <img src={sponsorAmoPet} alt="Brainny Logo" />
