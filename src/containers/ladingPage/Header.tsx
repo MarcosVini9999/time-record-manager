@@ -29,7 +29,7 @@ export const Header = () => {
         width: {
           sm: "400px",
           md: "860px",
-          lg: "1200px",
+          lg: "1261.75px",
         },
       }}
     >

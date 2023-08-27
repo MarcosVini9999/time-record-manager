@@ -11,7 +11,9 @@ export const Sponsors = () => {
       display="flex"
       alignItems="center"
       flexDirection="row"
+      flexWrap="wrap"
       justifyContent="center"
+      gap="70px"
     >
       <img src={sponsorBrainny} alt="Brainny Logo" />
       <img src={sponsorAmoPet} alt="Brainny Logo" />
