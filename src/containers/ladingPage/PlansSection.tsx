@@ -22,6 +22,12 @@ export const PlansSection = () => {
         permissions={ladingPageData.card.gold.hasAccess}
         value={ladingPageData.card.gold.value}
       />
+      <PlanCard
+        planTitle={ladingPageData.card.platinum.title}
+        information={ladingPageData.card.platinum.information}
+        permissions={ladingPageData.card.platinum.hasAccess}
+        value={ladingPageData.card.platinum.value}
+      />
     </>
   );
 };

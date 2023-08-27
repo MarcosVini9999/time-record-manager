@@ -47,5 +47,17 @@ export const ladingPageData = {
         { isLocked: 1, benefit: "Email corporativo" },
       ],
     },
+    platinum: {
+      title: "Plano Platina",
+      value: 200,
+      information: "Acessos ilimitados",
+      hasAccess: [
+        { isLocked: 0, benefit: "Área de meus registross" },
+        { isLocked: 0, benefit: "Dashboard" },
+        { isLocked: 0, benefit: "Acesso de 10 colaboradores" },
+        { isLocked: 0, benefit: "Suporte exclusivo" },
+        { isLocked: 0, benefit: "Email corporativo" },
+      ],
+    },
   },
 };
