@@ -38,7 +38,14 @@ export const UpSection = () => {
       id="inicio"
       style={styles.upSectionContainer}
     >
-      <Box maxWidth="520px" maxHeight="343px">
+      <Box
+        maxWidth="520px"
+        sx={{
+          maxHeight: {
+            md: "343px",
+          },
+        }}
+      >
         <Typography
           variant="h5"
           color="white"
@@ -89,7 +96,7 @@ export const UpSection = () => {
           maxWidth: "703.75px",
           maxHeight: "507px",
           width: {
-            sm: "440px",
+            sm: "350px",
             md: "500px",
             lg: "703.75px",
           },

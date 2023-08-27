@@ -14,6 +14,7 @@ export const Footer = () => {
         justifyContent="center"
         padding="20px 0px 20px 0px"
         gap="60px"
+        flexWrap="wrap"
         borderBottom={`1px solid ${Colors.secondary}`}
         borderTop={`1px solid ${Colors.secondary}`}
       >

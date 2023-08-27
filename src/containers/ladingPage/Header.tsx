@@ -27,7 +27,7 @@ export const Header = () => {
       marginRight="auto"
       sx={{
         width: {
-          sm: "400px",
+          sm: "350px",
           md: "860px",
           lg: "1261.75px",
         },
