@@ -2,12 +2,16 @@ import "@/resetStyles.css";
 import { ThemeProvider } from "@mui/material";
 import { Theme } from "@/config";
 import { Router } from "@/components";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "@/lib/apollo";
 
 const App = () => {
   return (
-    <ThemeProvider theme={Theme}>
-      <Router />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={Theme}>
+        <Router />
+      </ThemeProvider>
+    </ApolloProvider>
   );
 };
 

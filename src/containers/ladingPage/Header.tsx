@@ -2,6 +2,7 @@ import { Box, Link } from "@mui/material";
 import { PontoGoButton } from "@/components";
 import Logo from "@/assets/icons/pontoGoLogo.svg";
 import { Colors } from "@/config";
+import { Link as LinkRouter } from "react-router-dom";
 
 const styles = {
   link: {
@@ -64,7 +65,16 @@ export const Header = () => {
         >
           Planos
         </Link>
-        <PontoGoButton buttonStyle="secondary">Fazer login</PontoGoButton>
+        <PontoGoButton buttonStyle="secondary">
+          <LinkRouter
+            to="login"
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            Fazer login
+          </LinkRouter>
+        </PontoGoButton>
       </Box>
     </Box>
   );
