@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { Fragment } from "react";
+import { FC, Fragment } from "react";
 import { Outlet } from "react-router-dom";
-import { LandingPage } from "@/pages";
+import { DashboardPage, LandingPage, LoginPage, TimeRecordPage } from "@/pages";
 
-export const Router: React.FC = () => {
+export const Router: FC = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -16,7 +16,9 @@ export const Router: React.FC = () => {
           }
         >
           <Route path="/" element={<LandingPage />} />
-          <Route path="/hello" element={<h1>hello world</h1>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/meus-registros" element={<TimeRecordPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
