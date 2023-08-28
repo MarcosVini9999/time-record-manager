@@ -1,5 +1,5 @@
 import { Box, Link } from "@mui/material";
-import { PontoGoButton } from "../../components";
+import { PontoGoButton } from "@/components";
 import Logo from "@/assets/icons/pontoGoLogo.svg";
 import { Colors } from "@/config";
 

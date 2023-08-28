@@ -25,6 +25,7 @@ export const Footer = () => {
             fontWeight="700"
             fontSize="20px"
             lineHeight="30px"
+            marginBottom="5px"
           >
             @pontogo
           </Typography>

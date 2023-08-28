@@ -88,7 +88,9 @@ export const UpSection = () => {
         </Typography>
         <Box display="flex" flexDirection="row" alignItems="center" gap="15px">
           <PontoGoButton buttonStyle="primary">Assinar agora</PontoGoButton>
-          <PontoGoButton buttonStyle="borders">Ver planos</PontoGoButton>
+          <PontoGoButton buttonStyle="borders" href="#planos">
+            Ver planos
+          </PontoGoButton>
         </Box>
       </Box>
       <Box
