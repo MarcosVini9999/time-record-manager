@@ -2,7 +2,7 @@ import { Box, Link } from "@mui/material";
 import { PontoGoButton } from "@/components";
 import Logo from "@/assets/icons/pontoGoLogo.svg";
 import { Colors } from "@/config";
-import { Link as LinkRouter, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const styles = {
   link: {
