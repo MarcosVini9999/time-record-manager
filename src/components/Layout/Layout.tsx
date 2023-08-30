@@ -12,7 +12,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Colors } from "@/config";
 import pontGoLogo from "@/assets/icons/pontGoLogoPrimary.svg";
 import { ApolloClient, InMemoryCache, createHttpLink, gql } from "@apollo/client";
-import useAuth, { getUserLocalStorage } from "@/context/AuthContext";
+import useAuth from "@/context/AuthContext";
 import { Outlet } from "react-router-dom";
 
 const drawerWidth = 180;
@@ -48,15 +48,12 @@ const createClient = (token: string) => {
 export function Layout(props: ILayoutProps) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [myID, setMyID] = useState<any>();
+  // const [myID, setMyID] = useState<any>();
   const [registeredTimes, setRegisteredTimes] = useState<ITimes[]>();
-  // const { user } = useAuth();
-  const user = getUserLocalStorage();
+  const { user } = useAuth();
 
   useEffect(() => {
-    if (myID) {
-      return;
-    }
+    if (registeredTimes !== undefined) return;
 
     const token = user?.jwt;
 
@@ -64,76 +61,66 @@ export function Layout(props: ILayoutProps) {
 
     const client = createClient(token);
 
-    const feachMyID = async () => {
-      const { data } = await client.query({
-        query: gql`
-          query GetMe {
-            me {
-              id
-            }
-          }
-        `,
-        context: {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      });
-
-      return data;
-    };
-
-    try {
-      feachMyID().then((data) => {
-        setMyID(data.me.id);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (registeredTimes && !myID) return;
-
-    const token = user?.jwt;
-
-    if (!token) return;
-
-    const client = createClient(token);
-
-    const fetchRegisteredTimes = async () => {
-      const { data } = await client.query({
-        query: gql`
-          query GetMyRegisteredTimes($id: String!) {
-            registeredTimes(where: { user: { id: $id } }) {
-              user: user {
-                name
+    const fetchData = async () => {
+      let myID;
+      let times;
+      try {
+        const { data } = await client.query({
+          query: gql`
+            query GetMe {
+              me {
                 id
               }
-              created_at
-              id
             }
-          }
-        `,
-        context: {
-          headers: {
-            Authorization: `Bearer ${token}`,
+          `,
+          context: {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-        variables: {
-          id: myID,
-        },
-      });
+        });
 
-      return data;
+        myID = data.me.id;
+      } catch (error) {
+        console.log(error);
+      }
+
+      try {
+        const { data } = await client.query({
+          query: gql`
+            query GetMyRegisteredTimes($id: String!) {
+              registeredTimes(where: { user: { id: $id } }) {
+                user: user {
+                  name
+                  id
+                }
+                created_at
+                id
+              }
+            }
+          `,
+          context: {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+          variables: {
+            id: myID,
+          },
+        });
+
+        times = data?.registeredTimes;
+      } catch (error) {
+        console.log(error);
+      }
+
+      setRegisteredTimes(await times);
+
+      return times;
     };
 
-    try {
-      fetchRegisteredTimes().then((data) => setRegisteredTimes(data?.registeredTimes));
-    } catch (error) {
-      console.log(error);
-    }
-  }, [myID]);
+    fetchData();
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

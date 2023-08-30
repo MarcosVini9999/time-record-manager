@@ -1,8 +1,10 @@
 import { createContext, useEffect, useState, useContext } from "react";
 
+export type UserTypes = "user" | "admin";
+
 export interface IUserRole {
   id: string;
-  name: string;
+  name: UserTypes;
 }
 
 export interface IUser {
@@ -12,7 +14,7 @@ export interface IUser {
 
 export interface ILogUser {
   jwt: string;
-  user: any;
+  user: IUser;
 }
 
 interface IAuthContextProps {

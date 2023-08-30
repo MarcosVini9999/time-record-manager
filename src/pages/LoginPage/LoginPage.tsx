@@ -4,7 +4,8 @@ import pontGoLogo from "@/assets/icons/pontGoLogoPrimary.svg";
 import loginBanner from "@/assets/images/loginBanner.png";
 import { FormEvent, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
-import useAuth from "@/context/AuthContext";
+import useAuth, { ILogUser } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LOGIN = gql`
   mutation ($password: String!, $identifier: String!) {
@@ -27,14 +28,15 @@ export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login] = useMutation(LOGIN);
-  const { authenticate, user } = useAuth();
+  const { authenticate } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
 
     if (!email && !password) return;
 
-    let userData = {} as any;
+    let userData = {} as ILogUser;
 
     await login({
       variables: {
@@ -46,7 +48,9 @@ export const LoginPage = () => {
     if (!userData) return;
 
     authenticate(userData);
-    console.log(user);
+
+    if (userData.user.role.name === "admin") navigate("/dashboard");
+    if (userData.user.role.name === "user") navigate("/meus-registros");
   };
 
   return (

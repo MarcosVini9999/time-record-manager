@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from "react-router-dom";
-
-type UserTypes = "user" | "admin";
+import { UserTypes } from "@/context/AuthContext";
+import { ITimes } from "@/components/Layout/Layout";
+import { Navigate, Outlet, useOutletContext } from "react-router-dom";
 
 interface IPrivateRoutes {
   role: Array<UserTypes>;
@@ -8,9 +8,7 @@ interface IPrivateRoutes {
 }
 
 export const PrivateRoute = ({ role, userType }: IPrivateRoutes) => {
-  console.log(role.includes(userType));
-  console.log(role);
-  console.log(userType);
+  const registeredTimes: ITimes[] = useOutletContext();
 
-  return role.includes(userType) ? <Outlet /> : <Navigate to="/login" />;
+  return role.includes(userType) ? <Outlet context={registeredTimes} /> : <Navigate to="/login" />;
 };
