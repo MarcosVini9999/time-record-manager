@@ -5,7 +5,7 @@ import { Colors } from "@/config";
 import check from "@/assets/icons/check.svg";
 import unCheck from "@/assets/icons/unCheck.svg";
 
-interface PlanCardProps {
+interface IPlanCardProps {
   data: {
     title: string;
     value: number;
@@ -16,7 +16,7 @@ interface PlanCardProps {
   isCenterSlide: boolean;
 }
 
-export const PlanCard = memo(({ data, dataIndex, isCenterSlide }: PlanCardProps) => {
+export const PlanCard = memo(({ data, dataIndex, isCenterSlide }: IPlanCardProps) => {
   const { title, value, information, hasAccess } = data[dataIndex];
 
   return (

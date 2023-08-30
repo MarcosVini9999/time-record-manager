@@ -4,6 +4,7 @@ import pontGoLogo from "@/assets/icons/pontGoLogoPrimary.svg";
 import loginBanner from "@/assets/images/loginBanner.png";
 import { FormEvent, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import useAuth from "@/context/AuthContext";
 
 const LOGIN = gql`
   mutation ($password: String!, $identifier: String!) {
@@ -25,26 +26,27 @@ const LOGIN = gql`
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [login] = useMutation(LOGIN);
+  const { authenticate, user } = useAuth();
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
 
     if (!email && !password) return;
 
-    let token = "";
+    let userData = {} as any;
 
     await login({
       variables: {
         password: password,
         identifier: email,
       },
-    }).then(({ data }) => (token = data?.login.jwt!));
+    }).then(({ data }) => (userData = data?.login));
 
-    if (!token) return;
+    if (!userData) return;
 
-    console.log(token);
+    authenticate(userData);
+    console.log(user);
   };
 
   return (

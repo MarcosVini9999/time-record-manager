@@ -2,7 +2,7 @@ import { Button, ButtonProps } from "@mui/material";
 import { FC, ReactNode } from "react";
 import { Colors } from "@/config";
 
-interface PontoGoButtonProps extends ButtonProps {
+interface IPontoGoButtonProps extends ButtonProps {
   children?: ReactNode;
   buttonStyle: "primary" | "secondary" | "borders";
 }
@@ -42,7 +42,7 @@ const styles = {
   },
 };
 
-export const PontoGoButton: FC<PontoGoButtonProps> = ({ children, buttonStyle, ...rest }) => {
+export const PontoGoButton: FC<IPontoGoButtonProps> = ({ children, buttonStyle, ...rest }) => {
   return (
     <Button
       style={

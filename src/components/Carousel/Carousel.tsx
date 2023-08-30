@@ -5,7 +5,7 @@ import { PlanCard } from "@/components";
 import rightArrow from "@/assets/icons/rightArrow.svg";
 import leftArrow from "@/assets/icons/leftArrow.svg";
 
-interface CarouselProps {
+interface ICarouselProps {
   data: {
     title: string;
     value: number;
@@ -14,7 +14,7 @@ interface CarouselProps {
   }[];
 }
 
-export const Carousel: FC<CarouselProps> = ({ data }) => {
+export const Carousel: FC<ICarouselProps> = ({ data }) => {
   const ref = useRef<any>();
 
   useEffect(() => {
