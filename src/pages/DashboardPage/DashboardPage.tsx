@@ -4,10 +4,6 @@ import { useOutletContext } from "react-router-dom";
 export const DashboardPage = () => {
   const registeredTimes: ITimes[] = useOutletContext();
 
-  console.log("DashboardPage");
-  console.log(registeredTimes);
-  console.log("DashboardPage");
-
   return (
     <>
       {registeredTimes?.map((time, index) => (
