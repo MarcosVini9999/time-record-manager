@@ -53,6 +53,7 @@ export const SystemDrawer: FC<ISystemDrawerProps> = ({ userType }) => {
           height: "100vh",
           display: "flex",
           flexDirection: "column",
+          boxShadow: "0px 4px 10px 0px #0000001A",
           justifyContent: "space-between",
         }}
       >

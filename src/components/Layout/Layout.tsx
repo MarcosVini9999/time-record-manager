@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Colors } from "@/config";
 import { ApolloClient, InMemoryCache, createHttpLink, gql } from "@apollo/client";
@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import { PontoGoDrawer } from "@/components";
 import { SystemDrawer } from "@/containers";
 import useAuth from "@/context/AuthContext";
+import menu from "@/assets/icons/menu.svg";
 
 export interface ITimes {
   id: string;
@@ -46,7 +47,7 @@ export function Layout(props: ILayoutProps) {
   const drawerWidth = 180;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userTimes, setUserTimes] = useState<IUserTimes>();
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   const fetchData = async (token: string) => {
     const client = createClient(token);
@@ -128,23 +129,6 @@ export function Layout(props: ILayoutProps) {
 
   return (
     <Box display="flex">
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { md: `calc(100% - ${drawerWidth}px)` },
-          ml: { md: `${drawerWidth}px` },
-        }}
-      >
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerToggle}
-          sx={{ mr: 2, display: { md: "none" } }}
-        >
-          MENU
-        </IconButton>
-      </AppBar>
       <Box
         component="nav"
         sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
@@ -192,6 +176,14 @@ export function Layout(props: ILayoutProps) {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}
       >
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerToggle}
+          sx={{ mr: 2, display: { md: "none" } }}
+        >
+          <img src={menu} alt="menu" />
+        </IconButton>
         <Outlet context={{ userTimes, fetchData }} />
       </Box>
     </Box>
