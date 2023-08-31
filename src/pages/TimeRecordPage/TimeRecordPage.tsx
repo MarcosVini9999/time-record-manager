@@ -8,7 +8,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import clock from "@/assets/icons/clock.svg";
 import { gql, useMutation } from "@apollo/client";
@@ -32,6 +32,11 @@ export const TimeRecordPage = () => {
   const { userTimes, fetchData }: OutletContextProps = useOutletContext();
   const [open, setOpen] = useState(false);
   const [createRegisteredTime] = useMutation(CreateRegisteredTime);
+  const [userData, setUserData] = useState<IUserTimes>();
+
+  useEffect(() => {
+    setUserData(userTimes);
+  }, [userTimes]);
 
   const clockIN = async () => {
     await createRegisteredTime({
@@ -58,7 +63,7 @@ export const TimeRecordPage = () => {
   return (
     <>
       <button onClick={handleClickOpen}>Registrar ponto</button>
-      {userTimes?.registeredTime
+      {userData?.registeredTime
         ?.slice(0)
         .reverse()
         .map((time, index) => (
