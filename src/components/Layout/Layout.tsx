@@ -1,21 +1,11 @@
-import {
-  AppBar,
-  Box,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
-import { Fragment, useEffect, useState } from "react";
+import { AppBar, Box, IconButton } from "@mui/material";
+import { useEffect, useState } from "react";
 import { Colors } from "@/config";
-import pontGoLogo from "@/assets/icons/pontGoLogoPrimary.svg";
 import { ApolloClient, InMemoryCache, createHttpLink, gql } from "@apollo/client";
-import useAuth from "@/context/AuthContext";
 import { Outlet } from "react-router-dom";
-
-const drawerWidth = 180;
+import { PontoGoDrawer } from "@/components";
+import { SystemDrawer } from "@/containers";
+import useAuth from "@/context/AuthContext";
 
 export interface ITimes {
   id: string;
@@ -53,9 +43,10 @@ const createClient = (token: string) => {
 
 export function Layout(props: ILayoutProps) {
   const { window } = props;
+  const drawerWidth = 180;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userTimes, setUserTimes] = useState<IUserTimes>();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const fetchData = async (token: string) => {
     const client = createClient(token);
@@ -133,24 +124,6 @@ export function Layout(props: ILayoutProps) {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <Fragment>
-      <List>
-        <img src={pontGoLogo} alt="Logo da PontoGO" width="134px" height="31.17px" />
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemText primary={"Dashboard"} />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemText primary={"Sair"} />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Fragment>
-  );
-
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
@@ -178,7 +151,7 @@ export function Layout(props: ILayoutProps) {
         aria-label="mailbox folders"
       >
         {/*Drawer for mobile version*/}
-        <Drawer
+        <PontoGoDrawer
           container={container}
           variant="temporary"
           open={mobileOpen}
@@ -195,11 +168,11 @@ export function Layout(props: ILayoutProps) {
             },
           }}
         >
-          {drawer}
-        </Drawer>
+          <SystemDrawer userType={user?.user?.role?.name} />
+        </PontoGoDrawer>
 
         {/*Drawer for desktop version*/}
-        <Drawer
+        <PontoGoDrawer
           variant="permanent"
           sx={{
             display: { xs: "none", md: "block" },
@@ -211,8 +184,8 @@ export function Layout(props: ILayoutProps) {
           }}
           open
         >
-          {drawer}
-        </Drawer>
+          <SystemDrawer userType={user?.user?.role?.name} />
+        </PontoGoDrawer>
       </Box>
 
       <Box
