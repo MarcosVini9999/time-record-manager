@@ -1,15 +1,7 @@
 import { PontoGoButton, RegisteredTime } from "@/components";
 import { IUserTimes } from "@/components/Layout/Layout";
 import { Colors } from "@/config";
-import {
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-} from "@mui/material";
+import { Box, Dialog, DialogContentText, Typography } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import clock from "@/assets/icons/clock.svg";
