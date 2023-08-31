@@ -174,16 +174,24 @@ export function Layout(props: ILayoutProps) {
 
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { md: `calc(100% - ${drawerWidth}px)` },
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerToggle}
-          sx={{ mr: 2, display: { md: "none" } }}
-        >
-          <img src={menu} alt="menu" />
-        </IconButton>
+        <Box marginBottom="30px">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { md: "none" } }}
+          >
+            <img src={menu} alt="menu" />
+          </IconButton>
+        </Box>
         <Outlet context={{ userTimes, fetchData }} />
       </Box>
     </Box>

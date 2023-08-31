@@ -1,14 +1,16 @@
-import { PontoGoButton } from "@/components";
+import { PontoGoButton, RegisteredTime } from "@/components";
 import { IUserTimes } from "@/components/Layout/Layout";
 import { Colors } from "@/config";
 import {
+  Box,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import clock from "@/assets/icons/clock.svg";
 import { gql, useMutation } from "@apollo/client";
@@ -61,19 +63,49 @@ export const TimeRecordPage = () => {
   };
 
   return (
-    <>
-      <button onClick={handleClickOpen}>Registrar ponto</button>
-      {userData?.registeredTime
-        ?.slice(0)
-        .reverse()
-        .map((time, index) => (
-          <div key={index} style={{ border: "1px solid black" }}>
-            <p>{index}</p>
-            <h1>{time.id}</h1>
-            <h1>{time.user.name}</h1>
-            <h1>{time.created_at}</h1>
-          </div>
-        ))}
+    <Fragment>
+      <PontoGoButton
+        sx={{
+          backgroundColor: `${Colors.primary} !important`,
+          width: "200px !important",
+          marginBottom: "30px",
+        }}
+        onClick={handleClickOpen}
+        buttonStyle="primary"
+      >
+        <Typography>Registrar pontos</Typography>
+      </PontoGoButton>
+
+      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <Typography fontWeight="600" fontSize="22px" lineHeight="33px" marginRight="164px">
+            Colaborador
+          </Typography>
+          <Typography
+            fontWeight="600"
+            fontSize="22px"
+            lineHeight="33px"
+            width="147px"
+            marginRight="110px"
+          >
+            Data
+          </Typography>
+          <Typography fontWeight="600" fontSize="22px" lineHeight="33px">
+            Hora
+          </Typography>
+        </Box>
+        {userData?.registeredTime
+          ?.slice(0)
+          .reverse()
+          .map((time, index) => (
+            <RegisteredTime key={index} time={time} marginBottom="15px" />
+          ))}
+      </Box>
 
       <Dialog
         open={open}
@@ -106,6 +138,6 @@ export const TimeRecordPage = () => {
           </PontoGoButton>
         </DialogActions>
       </Dialog>
-    </>
+    </Fragment>
   );
 };

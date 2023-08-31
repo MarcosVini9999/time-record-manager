@@ -5,7 +5,7 @@ import useAuth, { UserTypes } from "@/context/AuthContext";
 import pontGoLogo from "@/assets/icons/pontGoLogoPrimary.svg";
 import note from "@/assets/icons/note.svg";
 import logoutImg from "@/assets/icons/logout.svg";
-import dashboard from "@/assets/icons/dashboard.svg";
+import dashboardImg from "@/assets/icons/dashboardIcon.svg";
 
 interface ISystemDrawerProps {
   userType: UserTypes;
@@ -16,33 +16,15 @@ export const SystemDrawer: FC<ISystemDrawerProps> = ({ userType }) => {
 
   const data =
     userType == "user" ? (
-      <Typography
-        fontWeight="400"
-        fontSize="14px"
-        lineHeight="21px"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-        }}
-      >
+      <>
         <img src={note} alt="Meus registros" />
         Meus registros
-      </Typography>
+      </>
     ) : (
-      <Typography
-        fontWeight="400"
-        fontSize="14px"
-        lineHeight="21px"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-        }}
-      >
-        <img src={dashboard} alt="dashboard" />
+      <>
+        <img src={dashboardImg} alt="dashboard" />
         Dashboard
-      </Typography>
+      </>
     );
 
   return (
@@ -69,7 +51,18 @@ export const SystemDrawer: FC<ISystemDrawerProps> = ({ userType }) => {
           />
           <ListItem disablePadding>
             <DrawerButton version="menu" active>
-              {data}
+              <Typography
+                fontWeight="400"
+                fontSize="14px"
+                lineHeight="21px"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                {data}
+              </Typography>
             </DrawerButton>
           </ListItem>
         </Box>

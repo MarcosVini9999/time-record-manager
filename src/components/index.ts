@@ -5,3 +5,4 @@ export { Router } from "./Routes/router";
 export { Layout } from "./Layout/Layout";
 export { PontoGoDrawer } from "./PontoGoDrawer/PontoGoDrawer";
 export { DrawerButton } from "./DrawerButton/DrawerButton";
+export { RegisteredTime } from "./RegisteredTime/RegisteredTime";
