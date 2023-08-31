@@ -1,12 +1,17 @@
-import { ITimes } from "@/components/Layout/Layout";
+import { IUserTimes } from "@/components/Layout/Layout";
 import { useOutletContext } from "react-router-dom";
 
+interface OutletContextProps {
+  userTimes: IUserTimes;
+  fetchData: (token: string) => IUserTimes;
+}
+
 export const DashboardPage = () => {
-  const registeredTimes: ITimes[] = useOutletContext();
+  const { userTimes }: OutletContextProps = useOutletContext();
 
   return (
     <>
-      {registeredTimes?.map((time, index) => (
+      {userTimes.registeredTime?.map((time, index) => (
         <div key={index}>
           <h1>{index}</h1>
           <h1>{time.user.name}</h1>

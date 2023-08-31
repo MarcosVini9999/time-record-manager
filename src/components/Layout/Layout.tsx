@@ -30,6 +30,12 @@ interface ILayoutProps {
   window?: () => Window;
 }
 
+export interface IUserTimes {
+  registeredTime: ITimes[];
+  token: string;
+  userID: string;
+}
+
 const createClient = (token: string) => {
   const client = new ApolloClient({
     ssrMode: true,
@@ -48,78 +54,79 @@ const createClient = (token: string) => {
 export function Layout(props: ILayoutProps) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-  // const [myID, setMyID] = useState<any>();
-  const [registeredTimes, setRegisteredTimes] = useState<ITimes[]>();
+  const [userTimes, setUserTimes] = useState<IUserTimes>();
   const { user } = useAuth();
 
+  const fetchData = async (token: string) => {
+    const client = createClient(token);
+    let myID;
+    let times;
+    try {
+      const { data } = await client.query({
+        query: gql`
+          query GetMe {
+            me {
+              id
+            }
+          }
+        `,
+        context: {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      });
+
+      myID = data.me.id;
+    } catch (error) {
+      console.log(error);
+    }
+
+    try {
+      const { data } = await client.query({
+        query: gql`
+          query GetMyRegisteredTimes($id: String!) {
+            registeredTimes(where: { user: { id: $id } }) {
+              user: user {
+                name
+                id
+              }
+              created_at
+              id
+            }
+          }
+        `,
+        context: {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        variables: {
+          id: myID,
+        },
+      });
+
+      times = data?.registeredTimes;
+    } catch (error) {
+      console.log(error);
+    }
+
+    const registeredTime: ITimes[] = await times;
+    const userID: string = await myID;
+
+    setUserTimes({ registeredTime, token, userID });
+
+    return { registeredTime, token, userID };
+  };
+
   useEffect(() => {
-    if (registeredTimes !== undefined) return;
+    if (userTimes !== undefined) return;
 
     const token = user?.jwt;
 
     if (!token) return;
 
-    const client = createClient(token);
-
-    const fetchData = async () => {
-      let myID;
-      let times;
-      try {
-        const { data } = await client.query({
-          query: gql`
-            query GetMe {
-              me {
-                id
-              }
-            }
-          `,
-          context: {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        });
-
-        myID = data.me.id;
-      } catch (error) {
-        console.log(error);
-      }
-
-      try {
-        const { data } = await client.query({
-          query: gql`
-            query GetMyRegisteredTimes($id: String!) {
-              registeredTimes(where: { user: { id: $id } }) {
-                user: user {
-                  name
-                  id
-                }
-                created_at
-                id
-              }
-            }
-          `,
-          context: {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-          variables: {
-            id: myID,
-          },
-        });
-
-        times = data?.registeredTimes;
-      } catch (error) {
-        console.log(error);
-      }
-
-      setRegisteredTimes(await times);
-
-      return times;
-    };
-
-    fetchData();
+    fetchData(token);
   }, []);
 
   const handleDrawerToggle = () => {
@@ -212,7 +219,7 @@ export function Layout(props: ILayoutProps) {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}
       >
-        <Outlet context={registeredTimes} />
+        <Outlet context={{ userTimes, fetchData }} />
       </Box>
     </Box>
   );
