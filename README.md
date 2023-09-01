@@ -19,7 +19,7 @@ $ npm i
 
 # Run
 
-$ npx run dev
+$ npm run dev
 ```
 
 ## ⚙ Tecnologias
